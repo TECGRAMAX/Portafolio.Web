@@ -1,0 +1,25 @@
+.redes{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  padding: 7px;
+
+}
+.redes a{
+  cursor: default;
+}
+
+.redes img:hover{
+  filter: invert(29%) sepia(90%) saturate(1345%) hue-rotate(700deg) brightness(101%) contrast(100%);
+}
+
+/*
+
+.redes img{
+  filter: invert(0%) sepia(90%) saturate(1345%) hue-rotate(214deg) brightness(101%) contrast(100%);
+  cursor: default;
+}
+*/

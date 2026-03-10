@@ -1,0 +1,139 @@
+.Datos{
+    padding-bottom: 8vh ;
+    width: 85%;
+    height: 92vh;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    grid-template-columns: repeat(auto-fill,minmax(22rem, 1fr));
+}
+
+.Datos .intro{
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.Datos .intro .img {
+    margin: auto;
+}
+
+.Datos .intro .img img {
+    width: 250px;
+    height: 250px;
+    border: 4px solid #810707;
+    border-radius: 50%;
+    background: rgba(158, 158, 158, 1);
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.Datos .intro .p{
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(90deg, #FF0034, #7B5E5E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.Datos .edu{
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+h1{
+    font-size: 1.2rem;
+}
+
+.Datos .edu h2{
+    color: rgba(255, 0, 0, 0.5);
+    cursor: default;
+}
+.Datos .edu h5{
+    text-align: center;
+}
+h5 img{
+    padding-left: 1vh;
+    padding-height: 1vh;
+}
+
+.Datos .edu div{
+    color: antiquewhite;
+    background:linear-gradient(180deg, #7B2121, #414040) ;
+    font-size: 2vh;
+    min-width: 310px;
+    padding: 1vh;
+    border: 2px solid #810707;
+    border-radius: 10px;
+    width: 90%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center ;
+    gap: 1px;
+    cursor: default;
+}
+
+.Datos .edu div:hover{
+    color: #C0C0C0;
+    background:linear-gradient(90deg, #7B2121, #414040) ;
+}
+
+.Datos .edu div a {
+    margin-top: 2vh;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+    background: linear-gradient(90deg, #E91717, #7B2121);
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.Datos .edu div a:hover {
+    background: linear-gradient(90deg, #FF4C4C, #A83A3A);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+
+@media (max-width: 900px){
+
+    .Datos{
+        height: auto;
+        padding-bottom:16vh ;
+    }
+    .Datos .intro .img img{
+        width: 200px;
+        height: 200px;
+    }
+
+    .Datos .intro{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Datos .intro p{
+        width: 290px;
+    }
+    .Datos .edu div a {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+}

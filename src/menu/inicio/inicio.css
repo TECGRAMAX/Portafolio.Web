@@ -1,0 +1,341 @@
+.Inicio {
+    width: 100%;
+    height: 93vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20vh;
+    background: radial-gradient(circle at 30% 20%, rgba(120,180,255,0.35), transparent 40%),
+                radial-gradient(circle at 70% 25%, rgba(255,180,120,0.04), transparent 55%),
+                radial-gradient(circle at 50% 80%, rgba(150,100,255,0.25), transparent 55%),
+                radial-gradient(circle at 20% 70%, rgba(255,150,200,0.15), transparent 55%),
+                radial-gradient(circle at 80% 60%, rgba(100,220,255,0.25), transparent 55%),
+                #000;
+    position: relative;
+    overflow: hidden;
+    animation: nebulosaMove 5s ease-in-out infinite alternate;
+}
+
+.Inicio::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 10%, transparent 70%);
+    z-index: 0;
+    animation: glowPulse 12s ease-in-out infinite;
+}
+
+@keyframes nebulosaMove {
+    0% { background-position: 30% 20%, 70% 25%, 50% 80%, 20% 70%, 80% 60%; }
+    100% { background-position: 35% 25%, 65% 30%, 55% 75%, 25% 65%, 75% 65%; }
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.05; transform: scale(1); }
+    50% { opacity: 0.15; transform: scale(1.03); }
+    100% { opacity: 0.05; transform: scale(1); }
+}
+
+/* Galaxias */
+.galaxy { position: absolute; background: transparent; display: block; }
+.galaxy.center { top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50%; height: 26%; z-index: 2; }
+.galaxy.top-left { top: 10%; right: 0; width: 35%; height: 15%; z-index: 1; }
+.galaxy.top-right { top: 10%; left: 0; width: 35%; height: 15%; z-index: 1; }
+.galaxy.bottom-left { bottom: 10%; left: 0; width: 35%; height: 15%; z-index: 1; }
+.galaxy.bottom-right { bottom: 10%; right: 0; width: 35%; height: 15%; z-index: 1; }
+/* Texto principal */
+h1, p {
+  background: linear-gradient(90deg, #87839A, #828296);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: default;
+}
+
+.full {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  max-width: 420px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  text-align: center;
+}
+
+.full p {
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Contenedor del perfil */
+.boton-perfil {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Caja del logo */
+.boton-perfil .logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/* Imagen dentro del logo */
+.boton-perfil .logo img {
+    width: 120px;
+    height: 120px;
+    border: 3px solid #5A0707;
+    border-radius: 50%;
+    object-fit: cover;
+    background: rgba(158, 158, 158, 0.3);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover */
+.boton-perfil .logo:hover img {
+    transform: scale(1.05);
+    border: 3px solid #D82525;
+}
+
+
+/* Botones de enlaces encima de full */
+.botones-enlaces {
+    position: absolute;
+    bottom: 35%;           /* justo encima del bloque full */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    display: flex;
+    flex-direction: row;   /* en fila */
+    gap: 25px;
+    align-items: center;
+    justify-content: center;
+}
+
+.botones-enlaces a {
+    color: #fc466b;
+    width: 120px;
+    height: 40px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border: 2px solid #E91717;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover moderno: elevación y escala */
+.botones-enlaces a:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+/* 💻 Tablets pequeñas y pantallas medianas (~900px) */
+    @media (max-width: 900px){
+        .Inicio{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .full{ height: auto; }
+
+        .full p { font-size: 2rem; }
+
+        .botones-enlaces {
+            flex-direction: column; /* se apilan */
+            bottom: 28%;            /* siempre encima del texto */
+        }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 18vh;
+            height: 18vh;
+        }
+
+        /* Galaxias más compactas */
+        .galaxy.center { width: 65%; height: 22%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 45%; height: 12%; }
+    }
+
+/* 📱 algo de por ahí (~700px) */
+    @media (max-width: 700px){
+        .full { bottom: 12%; }
+        .full p { font-size: 1.9rem; }
+
+        .botones-enlaces { bottom: 29%; }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 17vh;
+            height: 17vh;
+        }
+
+        .galaxy.center { width: 70%; height: 20%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 48%; height: 11%; }
+    }
+
+/* 📱 Pantallas pequeñas (~600px) */
+    @media (max-width: 600px){
+        .full {  bottom: 13%;}
+
+        .botones-enlaces {
+            bottom: 30%;
+        }
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 16vh;
+            height: 16vh;
+        }
+
+        /* Galaxias más reducidas */
+        .galaxy.center { width: 75%; height: 18%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 50%; height: 10%; }
+    }
+
+/* 📱 especialito detergente, moto e7 plus (~580px) */
+    @media (max-width: 580px){
+        .full { bottom: 14%; }
+        .full p { font-size: 1.7rem; }
+
+        .botones-enlaces { bottom: 31%; }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 15vh;
+            height: 15vh;
+        }
+
+        .galaxy.center { width: 78%; height: 17%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 52%; height: 9%; }
+    }
+
+/* 📱 Galaxy Fold, iPhone Plus (~560px) */
+    @media (max-width: 560px){
+        .full { bottom: 15%; }
+        .full p { font-size: 1.6rem; }
+
+        .botones-enlaces { bottom: 32%; }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 14.5vh;
+            height: 14.5vh;
+        }
+
+        .galaxy.center { width: 80%; height: 16%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 54%; height: 8%; }
+    }
+
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~480px) */
+    @media (max-width: 480px){
+        .full { bottom: 17%; }
+        .full p { font-size: 1.5rem; }
+
+        .botones-enlaces { bottom: 33%; }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 13.5vh;
+            height: 13.5vh;
+        }
+
+        .galaxy.center { width: 88%; height: 14%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 57%; height: 7%; }
+    }
+
+/* 📱 Extra pequeñas (~430px) */
+    @media (max-width: 430px){
+        .full { bottom: 15%; }
+        .full p { font-size: 1.6rem; }
+
+        .botones-enlaces {
+            bottom: 32%; /* justo encima del bloque full */
+        }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 14vh;
+            height: 14vh;
+        }
+
+        /* Galaxias aún más compactas */
+        .galaxy.center { width: 85%; height: 15%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 55%; height: 8%; }
+    }
+
+/* 📱 iPhone 11, Galaxy S10 (~414px) */
+    @media (max-width: 414px){
+        .full { bottom: 18%; }
+        .full p { font-size: 1.45rem; }
+
+        .botones-enlaces { bottom: 34%; }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 13vh;
+            height: 13vh;
+        }
+
+        .galaxy.center { width: 90%; height: 13%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 58%; height: 6.5%; }
+    }
+
+/* 📱 Ultra pequeñas (~375px) */
+    @media (max-width: 375px){
+        .full { bottom: 20%; }
+        .full p { font-size: 1.4rem; }
+
+        .botones-enlaces {
+            bottom: 34%; /* mantiene jerarquía visual */
+        }
+
+        .boton-perfil .logo,
+        .boton-perfil .logo img {
+            width: 12vh;
+            height: 12vh;
+        }
+
+        /* Galaxias minimalistas */
+        .galaxy.center { width: 95%; height: 12%; }
+        .galaxy.top-left,
+        .galaxy.top-right,
+        .galaxy.bottom-left,
+        .galaxy.bottom-right { width: 60%; height: 6%; }
+    }
+
