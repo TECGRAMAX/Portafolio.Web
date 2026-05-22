@@ -1,0 +1,94 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #252BAB;
+  border-radius: 8px;
+  max-width: 95%;
+  max-height: 95%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.cerrar {
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  background: transparent;
+  border: none;
+  border-radius: 30rem;
+  cursor: default;
+  width: 5rem;
+  height: 5rem;
+}
+.cerrar img {
+	width: 100%;
+	height: 100%;
+}
+
+.imagen-dibujo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imagen-dibujo img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.redes-fila { 
+  display: flex;
+  justify-content: center;
+  border: 2px solid #FFFFFF;
+  gap: 7rem;
+  padding: 2%;
+  background: #242424;
+}
+
+.redes-fila img {
+  width: 4rem;
+  height: 4rem;
+  cursor: default;
+}
+
+.redes-fila img:hover{
+ 	filter: invert(29%) sepia(90%) saturate(1345%) hue-rotate(700deg) brightness(100%) contrast(100%);
+}
+
+/* 📱 Galaxy Fold, iPhone Plus (~700px) */
+  @media (max-width: 700px){
+  	.cerrar {
+	  width: 3rem;
+	  height: 3rem;
+	}
+	.redes-fila img {
+	  width: 2rem;
+	  height: 2rem;
+	  cursor: default;
+	}
+  }
+  /* (~400px) */
+  @media (max-width: 400px){
+  	.cerrar {
+	  width: 2rem;
+	  height: 2rem;
+	}
+	.redes-fila {
+		gap: 5rem;
+	}
+  }

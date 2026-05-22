@@ -1,0 +1,332 @@
+.Noticias{
+    width: 87%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 6vh 0;
+}
+
+.cartas{
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.cartas .carta {
+    z-index: 9;
+    margin: auto;
+    padding-bottom: 2vh;
+    max-width: 50rem;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #1F7493;
+    border-radius: 7px;
+    cursor: default;
+    transition: all 0.2s ease-in-out;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.cartas .carta:hover {
+   border: 2px solid #FF0000;
+   transform: translateY(-3px);
+   -webkit-transform: translateY(-3px);
+   -moz-transform: translateY(-3px);
+   -ms-transform: translateY(-3px);
+   -o-transform: translateY(-3px);
+}
+.cartas .carta h1, h2{
+    text-align: center;
+    margin-bottom: 5px;
+    color: #1F7493;
+    cursor: default;
+}
+
+.cartas .carta .titular{
+    font-family: calibri;
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+}
+.cartas .carta .titular h1{
+    font-size: 3rem;
+    letter-spacing:5px;
+}
+.cartas .carta .titular h2{
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing:3px;
+}
+.cartas .carta .noticia {        
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 6px 6px 0 0;
+    cursor: default;
+    padding: 1rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: [linea-1] 0.6fr [linea-2] 0.4fr;
+    grid-template-rows: [fila-1] 1fr;
+}
+
+@keyframes recorrerImagen {
+  0% { transform: translateX(0%); }
+  50% { transform: translateX(40%); }
+  100% { transform: translateX(0%); }
+}
+
+.noticia img {
+  grid-column-start: linea-1;
+  grid-column-end: linea-2;
+  grid-row-start: fila-1;
+  grid-row-end: fila-2;
+  animation: recorrerImagen 8s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  filter: brightness(0.95) contrast(1.05);
+  width: 20rem;
+  object-fit: cover;
+  border-radius: 10px;
+}
+.noticia:hover img {
+  animation-play-state: paused;
+}
+
+.noticia .articulo{
+    grid-column-start: linea-2;
+    grid-column-end: linea-3;
+    grid-row-start: fila-1;
+    grid-row-end: fila-2;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: [linea-1] 1fr;
+    grid-template-rows: [fila-1] 0.6fr [fila-2] 0.4fr;
+}
+.articulo h2{
+    grid-column-start: linea-1;
+    grid-column-end: linea-2;
+    grid-row-start: fila-1;
+    grid-row-end: fila-2;
+    width: 100%;
+    font-size: 2vh;
+    color: #ADA6A6;
+    text-align: center;
+}
+.articulo .autor{
+    grid-column-start: linea-1;
+    grid-column-end: linea-2;
+    grid-row-start: fila-2;
+    grid-row-end: fila-3;
+    font-size: 2vh;
+    padding: 0 10px;
+    font-weight: 600;
+    text-align: right;
+    align-items: botom;
+    color: #C8C8C8;
+    background: none;
+}
+.autor .autorImg{
+   animation: none;
+   width: 10rem;
+}
+.articulo .redImg{
+   animation: none;
+   width: 2rem;
+}
+
+/* 💻 Tablets pequeñas y pantallas medianas (~900px) */
+  @media (max-width: 900px) {
+    .cartas .carta {
+        max-width: 90%;
+      }
+  }
+
+/* 📱 Galaxy Fold, iPhone Plus (~600px) */
+  @media (max-width: 600px) {
+    .cartas .carta .titular h1{
+        font-size: 2.5rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 1.2rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia img {
+      width: 17rem;
+    }
+    .articulo h2{
+      font-size: 1.3vh;
+      text-align: left;
+    }
+    .autor .autorImg {
+      width: 10rem;
+    }
+
+    .articulo .redImg {width: 2rem;}
+  }
+
+/* 📱 Galaxy Fold, iPhone Plus (~560px) */
+  @media (max-width: 560px) {
+    .cartas .carta .titular h1{
+        font-size: 2.5rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 1rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia img {
+      width: 15rem;
+    }
+    .articulo h2{
+      font-size: 1.4vh;
+    }
+    .autor .autorImg {
+      width: 9rem;
+    }
+
+    .articulo .redImg {width: 1.5rem;}
+  }
+
+/* 📱 especialito detergente, moto e7 plus (~580px) */
+  @media (max-width: 580px) {
+    .cartas .carta .titular h1{
+        font-size: 1.2rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 0.7rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia .articulo{
+        grid-template-columns: [linea-1] 1fr;
+        grid-template-rows: [fila-1] 0.5fr [fila-2] 0.5fr;
+    }
+    .cartas .carta .noticia {
+        gap: 10px;
+    }
+    .noticia img {
+      width: 12rem;
+    }
+    .articulo h2{
+      font-size: 1vh;
+    }
+    .autor .autorImg {
+      width: 10rem;
+    }
+    .articulo .redImg {width: 1.7rem;}
+  }
+
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~480px) */
+  @media (max-width: 480px) {
+    .cartas .carta .titular h1{
+        font-size: 2.3rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 0.7rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia .articulo{
+        grid-template-columns: [linea-1] 1fr;
+        grid-template-rows: [fila-1] 0.5fr [fila-2] 0.5fr;
+    }
+    .noticia img {
+      width: 10rem;
+    }
+    .articulo h2{
+      font-size: 1vh;
+    }
+    .autor .autorImg {
+      width: 5rem;
+    }
+
+    .articulo .redImg {width: 1rem;}
+  }
+
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~430px) */
+  @media (max-width: 430px) {
+    .cartas .carta {
+      z-index: 8;
+      max-width: 45rem;
+      gap: 20px;
+    }
+    .cartas .carta .titular h1{
+        font-size: 2.3rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 0.7rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia .articulo{
+        grid-template-columns: [linea-1] 1fr;
+        grid-template-rows: [fila-1] 0.5fr [fila-2] 0.5fr;
+    }
+    .noticia img {
+      width: 10rem;
+    }
+    .articulo h2{
+      font-size: 1vh;
+    }
+    .autor .autorImg {
+      width: 5rem;
+    }
+
+    .articulo .redImg {width: 1rem;}
+  }
+
+/* 📱 iPhone SE, Galaxy A01 (~375px) */
+  @media (max-width: 375px) {
+    .cartas .carta .titular h1{
+        font-size: 2rem;
+    }
+    .cartas .carta .titular h2{
+        font-size: 0.5rem;
+    }
+    @keyframes recorrerImagen {
+      0% { transform: translateX(0%); }
+      50% { transform: translateX(7%); }
+      100% { transform: translateX(0%); }
+    }
+    .noticia .articulo{
+        grid-template-columns: [linea-1] 1fr;
+        grid-template-rows: [fila-1] 0.5fr [fila-2] 0.5fr;
+    }
+    .noticia img {
+      width: 10rem;
+    }
+    .articulo h2{
+      font-size: 0.8vh;
+    }
+    .autor .autorImg {
+      width: 7rem;
+    }
+
+    .articulo .redImg {width: 1rem;}
+  }
+  

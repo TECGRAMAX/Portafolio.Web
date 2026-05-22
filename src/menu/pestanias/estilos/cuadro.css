@@ -1,0 +1,129 @@
+.cuadro {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 55%;
+  width: 50rem;
+  padding: 20px;
+  text-align: center;
+
+  /* Segundo borde blanco separado */
+  box-shadow: 0 0 0 1px white;
+  border: 1px solid white;
+  border-radius: 12px;
+  background-color: rgba(0, 0, 128, 0.85); /* Azul marino con transparencia */
+}
+
+.cuadro p {
+  color: white;
+  font-size: clamp(16px, 2.5vw, 20px); /* Adaptable a móviles */
+  z-index: 9999;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+.cerrarc {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.7rem;
+    height: 1.7rem;
+    font-size: 2rem;
+    background-color: rgba(220, 218, 48, 0.85)
+    z-index: 1000; /* ← asegura que esté por encima de otros elementos */
+    border: 2px solid #FFF;
+    cursor: default; 
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cerrarc:hover {
+    opacity: 1;
+}
+.don {
+  background: none;
+  border: none;
+}
+.cuadro img{
+  width: 30%;
+  filter: invert(38%) sepia(74%) saturate(5469%) hue-rotate(225deg) brightness(100%) contrast(96%);
+  border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: default;
+}
+.cuadro img:hover{
+    filter: invert(38%) sepia(74%) saturate(3500%) hue-rotate(350deg) brightness(100%) contrast(100%);
+    transform: translateY(-2px);
+}
+
+/* 💻 Tablets pequeñas y pantallas medianas (~900px) */
+  @media (max-width: 900px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 20rem;
+    }
+  }
+/* 📱 Galaxy Fold, iPhone Plus (~600px) */
+  @media (max-width: 600px){
+    .cuadro {
+      width: 35rem;
+      padding: 20px;
+    }
+    .cuadro p {
+      font-size: clamp(20px, 2.3vw, 20px);
+    }
+    .cuadro img{
+      width: 20%;
+    }
+  }
+/* 📱 Galaxy Fold, iPhone Plus (~560px) */
+  @media (max-width: 560px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 30rem;
+    }
+  }
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~480px) */
+  @media (max-width: 480px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 28rem;
+    }
+    .cuadro img{
+      width: 30%;
+    }
+  }
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~430px) */
+  @media (max-width: 430px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 25rem;
+    }
+    .cuadro img{
+      width: 30%;
+    }
+  }
+/* 📱 iPhone 11, Galaxy S10 (~414px) */
+  @media (max-width: 414px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 23rem;
+    }
+  }
+/* 📱 iPhone SE, Galaxy A01 (~360px) */
+  @media (max-width: 360px){
+    .cuadro {
+        top: 50%;
+        left: 50%;
+        width: 20rem;
+    }
+  }

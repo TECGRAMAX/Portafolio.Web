@@ -1,0 +1,231 @@
+.Dibujos{
+    width: 70%;
+    height: auto;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 6vh 0;
+}
+.album{
+    flex-wrap: wrap;
+    gap: 40px;
+}
+h1{
+    font-size: 3rem;
+    color: #1F7493;
+    text-align: center;
+}
+.album .presentacion {
+    z-index: 9;
+    margin: auto;
+    padding-bottom: 2vh;
+    max-width: 27rem;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 2px solid #1F7493;
+    border-radius: 7px;
+    cursor: default;
+    transition: all 0.2s ease-in-out;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+.album .presentacion:hover {
+   border: 2px solid #FF0000;
+   transform: translateY(-3px);
+   -webkit-transform: translateY(-3px);
+   -moz-transform: translateY(-3px);
+   -ms-transform: translateY(-3px);
+   -o-transform: translateY(-3px);
+}
+.album .presentacion h2{
+    text-align: center;
+    margin-bottom: 5px;
+    color: #1F7493;
+    cursor: default;
+}
+.album .presentacion .dib { 
+    align-items: flex-start;
+    gap: 20px;
+    border-radius: 6px 6px 0 0;
+    cursor: default;
+    padding: 1rem;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: [linea-1] 0.2fr [linea-2] 0.8fr;
+    grid-template-rows: [fila-1] 1fr;
+}
+@keyframes zoomLoop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+.dib img {
+    grid-column-start: linea-1;
+    grid-column-end: linea-2;
+    grid-row-start: fila-1;
+    grid-row-end: fila-2;
+    object-fit: cover;
+    border-radius: 10px;
+    width: 17rem;
+    height: 27rem;
+    animation: zoomLoop 4s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+.dib:hover img {
+    animation-play-state: paused;
+}
+.dib .descripcion{   
+    grid-column-start: linea-2;
+    grid-column-end: linea-3;
+    grid-row-start: fila-1;
+    grid-row-end: fila-2;
+}
+.descripcion p{ 
+    padding-top: 2vh;
+    font-size: 2vh;
+    color: #ADA6A6;
+    text-align: left;
+}
+.descripcion .almoadilla{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.descripcion .almoadilla .sociales{
+    display: grid;
+    grid-template-columns: [linea-1] 1fr;
+    grid-template-rows: [fila-1] 0.2fr [fila-2] 0.8fr;
+}
+.sociales {
+  display: flex;
+  flex-direction: column; /* 🔑 Coloca los hijos en columna */
+  align-items: flex-start; /* opcional: alinear a la izquierda */
+  gap: 10px; /* espacio entre el texto y los íconos */
+}
+.sociales p{
+    padding-top: 5rem;
+    margin: 0;
+    font-weight: bold; /* opcional: resaltar */
+}
+
+.sociales .imagen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.almoadilla .sociales .imagen{ 
+    padding: 1vh 0;
+}
+.imagen img{
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 30px;
+    height: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+.imagen img:hover{ 
+    padding: 1vh 0;
+    transform: translateY(-10px);
+}
+
+
+/* 💻 Tablets pequeñas y pantallas medianas (~900px) */
+  @media (max-width: 900px){
+        .album .presentacion {
+            max-width: 25rem;
+            height: auto;
+        }
+        .dib img {
+            width: 15rem;
+            height: 25rem;
+        }
+        .descripcion p{ 
+            padding-top: 1vh;
+            font-size: 1.7vh;
+        }
+        .enlaces p{
+            padding-top: 3rem;
+        }
+        .imagen img{
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+/* 📱 Galaxy Fold, iPhone Plus (~600px) */
+  @media (max-width: 600px){
+        .Dibujos{
+            width: 90%;
+            padding: 6vh 0;
+        }
+        .album .presentacion {
+            max-width: 27rem;
+            height: auto;
+        }
+        .dib img {
+            width: 15rem;
+            height: 25rem;
+        }
+        .descripcion p{ 
+            padding-top: 1vh;
+            font-size: 1.7vh;
+        }
+        .enlaces p{
+            padding-top: 3rem;
+        }
+        .imagen img{
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+
+/* 📱 iPhone 11, Galaxy S10 (~414px) */
+  @media (max-width: 414px) {
+        .dib img {
+            width: 13rem;
+            height: 23rem;
+        }
+        .descripcion p{ 
+            padding-top: 1vh;
+            font-size: 1.7vh;
+        }
+        .imagen img{
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+/* 📱 iPhone SE, Galaxy A01 (~360px) */
+    @media (max-width: 360px) {
+        .dib img {
+            width: 10rem;
+            height: 20rem;
+        }
+        .descripcion p{ 
+            padding-top: 1vh;
+            font-size: 1.7vh;
+        }
+        .imagen img{
+            flex-wrap: wrap;
+            gap: 20px;
+            width: 30px;
+            height: 30px;
+        }
+    }
