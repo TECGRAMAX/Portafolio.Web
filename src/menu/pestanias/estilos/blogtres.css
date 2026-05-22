@@ -1,0 +1,299 @@
+@font-face {
+  font-family: 'Saiyan-Sans';
+  src: url('../../assets/tipografias/Saiyan-Sans.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Heroes-Assemble';
+  src: url('../../assets/tipografias/heroesassembleexpand2.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Perpetua';
+  src: url('../../assets/tipografias/Perpetua-Bold.ttf') format('truetype');
+}
+
+
+.blogjean {
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.presentacion {
+  position: relative;
+  width: 100%;
+  height: 18rem; 
+  overflow: hidden;
+}
+
+.imgportada {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imgperfil {
+  position: absolute;
+  bottom: 2rem; 
+  left: 5%;
+  width: 9rem;
+  height: 9rem;
+  border-radius: 50%;
+  border: 0.3rem solid #fff;
+  object-fit: cover;
+  background-color: #fff;
+  box-shadow: 0 0.2rem 0.6rem rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.secboce {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem;
+  background: rgb(029, 094, 247, 1.0);
+  border-radius: 0.5rem;
+  margin-top: 3rem;
+  box-shadow: 0 0.2rem 0.3rem rgba(0,0,0,0.1);
+}
+
+.imgboceto {
+  width: 20%;
+  max-width: 15rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.textoint {
+  text-align: center;
+  flex: 1;
+  font-size: 2rem;
+  line-height: 1.8;
+  font-weight: bold;
+  color: #fff;
+  -webkit-text-stroke: 0.5px #000; /* borde negro grueso */
+  font-family: 'Heroes-Assemble', sans-serif; /* tipografía */
+}
+
+.autoria {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: rgb(253, 241, 040, 1.0);
+  box-shadow: 0 0.2rem 0.3rem rgba(0,0,0,0.1);
+}
+.explica {
+  font-size: 5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+  -webkit-text-stroke: 2px #000; /* borde negro grueso */
+  text-stroke: 4px #000;
+  font-family: 'Saiyan-Sans', sans-serif; /* tipografía */
+  font-weight: bold;
+}
+
+.centro {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgb(274, 074, 045, 1.0);
+  box-shadow: 0 0.2rem 0.3rem rgba(0,0,0,0.1);
+}
+.secderecha {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+.secderecha .texto {
+  flex: 1;
+  text-align: left;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2.7rem;
+  color: #fff;
+  -webkit-text-stroke: 1px #000; /* borde negro grueso */
+  text-stroke: 4px #fff;
+  font-family: 'Perpetua', sans-serif; /* tipografía */
+  font-weight: bold;
+}
+
+/* Secciones anchas corregidas */
+.grande {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.imgmedio {
+  width: 55%;        
+  max-width: 20rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  margin-right: 2rem;
+  display: block;
+}
+
+.imgamp {
+  width: 100%;          /* ocupa el 90% del ancho del blog */
+  height: auto;        /* mantiene proporción */
+  border-radius: 0.5rem;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;      /* centrada */
+}
+
+.grande .texto {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.3;
+  max-width: 90%; /* alineado con la imagen */
+  text-stroke: 4px #000;
+  font-family: 'Perpetua', sans-serif; /* tipografía */
+  font-weight: bold;
+}
+
+.otrogrande {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+}
+.otrogrande .text {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 1.3;
+  max-width: 90%; /* alineado con la imagen */
+  text-stroke: 4px #000;
+  font-family: 'Perpetua', sans-serif; /* tipografía */
+  font-weight: bold;
+}
+
+.princip{
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background: rgb(029, 094, 247, 1.0);
+  box-shadow: 0 0.2rem 0.3rem rgba(0,0,0,0.1);
+}
+
+.fondo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  margin-bottom: 5rem;
+  padding: 2rem;
+  background: none;
+  border-top: 0.3rem solid #000;
+  border-bottom: 0.3rem solid #000;
+}
+
+.fondoimg {
+  width: 35%;
+  max-width: 18rem;
+  border-radius: 0.3rem;
+  object-fit: cover;
+}
+
+.fondotexto {
+  flex: 1;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-align: center;
+  color: #fff;
+  -webkit-text-stroke: 1.5px #000; /* borde negro grueso */
+  font-family: 'Saiyan-Sans', sans-serif; /* tipografía */
+  font-weight: bold;
+}
+/* 📱 algo de por ahí (~700px) */
+  @media (max-width: 700px) {
+    .textoint {
+      font-size:1.7rem ;
+    }
+    .explica {
+      font-size: 3rem;
+    }
+    .secderecha .texto,
+    .fondotexto{
+      font-size: 2rem;
+    }
+  }
+/* 📱 especialito detergente, moto e7 plus (~580px) */
+  @media (max-width: 580px) {
+    .imgboceto {
+      width: 20%;
+    }
+
+    .centro {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.2rem 0.3rem rgba(0,0,0,0.1);
+    }
+    .secderecha {
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .imgmedio {
+      width: 43%;        
+      max-width: 20rem;
+      border-radius: 0.5rem;
+      object-fit: cover;
+      margin-right: 2rem;
+      display: block;
+    }
+    .otrogrande .text{font-size: 0.7rem;}
+    .fondo {
+      padding: 1rem;
+    }
+    .fondoimg {
+      width: 50%;
+      max-width: 18rem;
+      border-radius: 0.3rem;
+      object-fit: cover;
+    }
+    .textoint {
+      font-size:1.4rem ;
+    }
+    .grande .texto{font-size: 0.7rem;}
+    .secderecha .texto,
+    .fondotexto{
+      font-size: 1.7rem;
+    }
+  }
+
+/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~480px) */
+  @media (max-width: 480px) {
+    .textoint {
+      font-size:1.1rem ;
+    }
+    .grande .texto{font-size: 0.5rem;}
+    .otrogrande .text{font-size: 0.5rem;}
+  }
+/* 📱 iPhone SE, Galaxy A01 (~375px) */
+ @media (max-width: 375px) {
+    .imgboceto {
+      width: 40% ;
+    }
+    .textoint {
+      font-size:1rem ;
+    }
+    .grande .texto {font-size: 0.5rem;}
+    .secderecha .texto,
+    .fondotexto{
+      font-size: 1.5rem;
+    }
+    .otrogrande .text{font-size: 0.5rem;}
+ }
