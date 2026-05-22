@@ -4,13 +4,22 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 20px;
-  padding: 17px;
+  gap: 10px;
+  padding: 7px;
 
 }
 .redes a{
   cursor: default;
 }
-.redes a:hover{
-  filter: invert(29%) sepia(90%) saturate(1345%) hue-rotate(700deg) brightness(100%) contrast(100%);
+
+.redes img:hover{
+  filter: invert(29%) sepia(90%) saturate(1345%) hue-rotate(700deg) brightness(101%) contrast(100%);
 }
+
+/*
+
+.redes img{
+  filter: invert(0%) sepia(90%) saturate(1345%) hue-rotate(214deg) brightness(101%) contrast(100%);
+  cursor: default;
+}
+*/

@@ -32,14 +32,14 @@ const Proyectos = () => {
             name:'Página de ventas básica',
             descrip:'Página muy básica de productos con enlace a Instagram.',
             tecno:[html,css,js,reactjs,vite],
-            urlv:['https://simonas-two.vercel.app'],
+            urlv:['https://simonas-two.vercel.app/'],
         },
         {
             image:[pboc],
             name:'Detector de Comercios (boceto)',
             descrip:'Boceto Frontend de página de comercios',
             tecno:[html,css,js,reactjs,vite],
-            urlv:['https://navegador-de-comencios-boceto.vercel.app/'],
+            urlv:['https://navegador-de-comencios-boceto.vercel.app'],
         },
 
         {

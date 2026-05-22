@@ -3,13 +3,13 @@
 }
 
 .header{
-    background: linear-gradient(180deg, #1F7493, #074A62);
+    background: linear-gradient(270deg, #514848, #E1002E);
     border-radius: 0.5rem;
     position: sticky;
     top: 0;
     z-index: 99;
     width: 90%;
-    height: 7rem;
+    height: 4rem;
     margin: auto;
     display: grid;
     grid-template-columns: 15% 70% 15%;
@@ -31,7 +31,7 @@
    cursor: default;
 }
 .L {
-    background: linear-gradient(180deg, #505050, #2A2626);
+    background: linear-gradient(270deg, #313131, #5E5E5E);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
@@ -47,32 +47,12 @@ span{
     -webkit-text-fill-color: transparent;
     cursor: default;
 }
-.header p{
-    position: absolute;
-    margin-top: 2.5rem;
-    margin-left: 3rem;
+
+.tecgramax{
     font-size: 1.7rem;
-    background: linear-gradient(270deg, #9B56CB, #6814A3);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    cursor: default;
-}
+    font-weight: 700;
 
-.header .logo{
-    width: 10rem;
-    height: 7rem;
-    margin-left: 2rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
-.header .logo img {
-    width: 100%;
-    height: 100%;
-}
-
-
 
 @media (max-width: 900px){
     .nav{
@@ -80,12 +60,12 @@ span{
     }
 
     .navMobile{
-        background: linear-gradient(90deg,#2A2626, #151313);
+        background: linear-gradient(90deg, #B80606, #5E5E5E);
         width: 90%;
         height: 4rem;
         left: 50%;
         transform: translateX(-50%);
-        border: 2px solid #1F7493;
+        border: 2px solid  #FF0000;
         border-radius: 7px;
         margin-bottom: 5px;
         position: absolute;
@@ -100,20 +80,14 @@ span{
         display: flex;
         justify-content:center;
         align-items: center;
-        filter: invert(0%) sepia(700%) saturate(90000%) hue-rotate(999deg) brightness(100%) contrast(0%);
     }
 
-    .navMobile a:hover {
-        filter: invert(29%) sepia(90%) saturate(1345%) hue-rotate(700deg) brightness(100%) contrast(100%);
+    .navMobile a img {
+        filter: invert(48%) sepia(100%) saturate(1000%) hue-rotate(224deg) brightness(30%) contrast(80%);
     }
 
     .header{
         display: flex;
         justify-content: space-between;
-        height: 5rem;
-    }
-    .header .logo{
-        width: 10rem;
-        height: 100%;
     }
 }
