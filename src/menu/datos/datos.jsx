@@ -90,7 +90,8 @@ const Datos = () => {
                         22/10/2017<br/>
                         _Manejo de Word y Exel.<br/>
                     </h4>
-                <a href="./cv.pdf" download="cv.pdf">DESCARGAR CV</a>
+                <a href="./datos/pdf/cv-ESP.pdf" download="">DESCARGAR CV-ESP</a>
+                <a href="./datos/pdf/cv-EN.pdf" download="cv.pdf">DESCARGAR CV-ENGL</a>
                 </div>
             </div>
         </section>
