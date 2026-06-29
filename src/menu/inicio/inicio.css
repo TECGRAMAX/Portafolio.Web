@@ -11,7 +11,6 @@
     overflow: hidden;
 }
 
-/* Eliminamos el pseudo-elemento ::before porque ya no necesitamos brillos */
 .Inicio::before {
     content: none;
 }
@@ -45,48 +44,81 @@ h1, p {
   letter-spacing: 1px;
 }
 
+/* 🔹 Caja padre que agrupa perfil, comunicación y enlaces */
+.contenedor-principal {
+    position: absolute;
+    bottom: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+/* 🔹 Animación al mover caja completa */
+.move-left .contenedor-principal {
+    transform: translateX(-600px);
+    opacity: 0.8;
+    transition: all 0.6s ease-in-out;
+}
+/* Animación de entrada */
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(100px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Animación de salida */
+@keyframes fadeOutRight {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100px); }
+}
+
 /* Contenedor combinado de perfil + texto */
 .perfil-contenedor {
-    position: absolute;
-    bottom: 70%;            
-    left: 55%;
-    transform: translateX(-50%);
-    z-index: 10;
-
     display: flex;          
     align-items: center;    
     gap: 20px;              
-    max-width: 600px;       
+    max-width: 450px;
 }
 
-/* Caja del logo */
 .perfil-contenedor .logo {
-    width: 100%;
-    height: 100%;
+    width: 20rem;
     border-radius: 50%;
 }
 
-/* Imagen dentro del logo */
 .perfil-contenedor .logo img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     border: 3px solid #5A0707;
     border-radius: 50%;
     object-fit: cover;
     background: rgba(158, 158, 158, 0.3);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
-/* Hover */
 .perfil-contenedor .logo:hover img {
     transform: scale(1.05);
     border: 3px solid #D82525;
 }
 
-/* Texto a la derecha de la imagen */
+/* 🔹 Animación de latido */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.08); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+.latido img {
+  animation: heartbeat 1.2s infinite;
+}
+
 .texto-perfil {
     font-size: 2.3rem;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 1px;
     background: linear-gradient(90deg, #87839A, #828296);
     -webkit-background-clip: text;
@@ -97,44 +129,32 @@ h1, p {
 
 /* Caja de comunicación (redes) */
 .comunicacion {
-    position: absolute;
-    bottom: 63%;          
-    left: 50%;             /* centrado horizontal */
-    transform: translateX(-50%);
-    z-index: 9;
     display: flex;
     flex-direction: row;
     gap: 25px;
     align-items: center;
     justify-content: center;
-
-    background: rgba(255, 255, 255, 0.05); /* sutil contraste */
+    background: rgba(255, 255, 255, 0.05); 
     padding: 12px 20px;
     border-radius: 12px;
-    backdrop-filter: blur(6px);            /* efecto moderno */
+    backdrop-filter: blur(6px);            
     box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
 
 .comunicacion a img {
-    filter: brightness(0) invert(1);       /* íconos blancos sobre fondo oscuro */
-    transition: all 0.3s ease-in-out;
+    filter: brightness(0) invert(1);
     width: 28px;
     height: 28px;
+    cursor: default;
 }
 
 .comunicacion a:hover img {
     transform: scale(1.2);
-    filter: drop-shadow(0 0 6px #00e0ff); /* brillo celeste al pasar el mouse */
+    filter: drop-shadow(0 0 6px #00e0ff); 
 }
 
-
-/* Botones de enlaces encima de full */
+/* Botones de enlaces */
 .botones-enlaces {
-    position: absolute;
-    bottom: 55%;           
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9;
     display: flex;
     flex-direction: row;   
     gap: 25px;
@@ -153,95 +173,652 @@ h1, p {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s ease-in-out;
+    cursor: default;
 }
 
-/* Hover moderno: elevación y escala */
 .botones-enlaces a:hover {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 6px 16px rgba(0,0,0,0.4);
 }
 
-/* 💻 Tablets pequeñas y pantallas medianas (~900px) */
+/* 🔹 Contenedor principal del chat */
+.chat-ia {
+    border: 2px solid #ACACAC;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 55%;
+    height: 100%; 
+    background: rgba(0,0,0,0.85);
+    border-radius: 12px 0 0 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -6px 0 20px rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    animation: fadeInRight 0.6s ease forwards;
+    overflow: hidden;
+}
+
+/* 🔹 Área de mensajes */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* 🔹 Mensajes estilo burbuja */
+.chat-message {
+    max-width: 70%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.4;
+    animation: fadeInUp 0.4s ease;
+}
+
+/* 🔹 Mensaje del bot */
+.chat-message.bot {
+    background: #2a2a2a;
+    color: #fff;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+/* 🔹 Mensaje del usuario */
+.chat-message.user {
+    background: #4CAF50;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+}
+
+/* 🔹 Input fijo abajo */
+.chat-input {
+    display: flex;
+    padding: 12px;
+    background: rgba(20,20,20,0.9);
+    border-top: 1px solid #333;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: #fff;
+    color: #000;
+}
+
+.chat-input button {
+    margin-left: 10px;
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    background: #4CAF50;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.chat-input button:hover {
+    background: #45a049;
+}
+
+/* 🔹 Animaciones */
+@keyframes fadeInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOutRight {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* 🔹 Animación de puntos "escribiendo" */
+.typing {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.2s infinite;
+}
+
+.typing span:nth-child(1) { animation-delay: 0s; }
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3)
+
+
+/* 💻 Tablets pequeñas (~900px) */
 @media (max-width: 900px){
-    .Inicio{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .contenedor-principal { 
+        bottom: 55%;
+        left: 50%;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-430px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 370px;
+    }
+    .perfil-contenedor .logo { width: 20rem; }
+
+    .texto-perfil {
+        font-size: 1.7rem;
+        font-weight: 600;
     }
 
-    .full{ height: auto; }
+    .comunicacion a img {
+        idth: 28px;
+        height: 28px;
+    }
 
-    .full p { font-size: 2rem; }
+    .botones-enlaces a {
+        width: 120px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
 
-    .perfil-contenedor { bottom: 83%; }
-    .comunicacion { bottom: 73%; border: 2px,solid,red}
-    .botones-enlaces { bottom: 65%; }
-    .texto-perfil { font-size: 1.7rem;}
+    .chat-ia {
+        width: 55%;
+        height: 90%;
+    }
 }
 
-/* 📱 algo de por ahí (~700px) */
+/* 📱 ~800px */
+@media (max-width: 800px){
+    .contenedor-principal { 
+        bottom: 60%;
+        left: 55%;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-430px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 370px;
+    }
+    .perfil-contenedor .logo { width: 20rem; }
+
+    .texto-perfil {
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    .comunicacion a img {
+        idth: 28px;
+        height: 28px;
+    }
+
+    .botones-enlaces a {
+        width: 120px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .chat-ia {
+        width: 55%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~700px */
 @media (max-width: 700px){
-    .perfil-contenedor { bottom: 83%; }
-    .comunicacion { bottom: 73%; border: 2px,solid,red}
-    .botones-enlaces { bottom: 65%; }
-    .texto-perfil { font-size: 1.3rem;}
-    .perfil-contenedor .logo img {
-        width: 100px;
-        height: 100px;
+    .contenedor-principal {
+        bottom: 60%;
+        left: 55%;
+        gap: 10px;
     }
-}
-
-/* 📱 Pantallas pequeñas (~600px) */
-@media (max-width: 600px){
-    .perfil-contenedor { bottom: 85%; }
-    .comunicacion { bottom: 75%; border: 2px,solid,red}
-    .botones-enlaces { bottom: 67%; }
-
-    .texto-perfil { font-size: 1rem;}
-    .perfil-contenedor .logo img {
-        width: 100px;
-        height: 100px;
+    .move-left .contenedor-principal {
+        transform: translateX(-370px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
     }
-}
-
-
-/* 📱 especialito detergente, moto e7 plus (~580px) */
-@media (max-width: 580px){
-    .perfil-contenedor { bottom: 85%; }
-    .comunicacion { bottom: 77%; border: 2px,solid,red}
-    .botones-enlaces { bottom: 70%; }
-
-    .texto-perfil { font-size: 1rem;}
-    .perfil-contenedor .logo img {
-        width: 70px;
-        height: 70px;
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 300px;
     }
-}
+    .perfil-contenedor .logo { width: 13rem; }
 
-/* 📱 iPhone 14 Pro Max, Galaxy S22 Ultra (~480px) */
-@media (max-width: 480px){
-    .perfil-contenedor { bottom: 85%; }
-    .comunicacion { bottom: 77%; border: 2px,solid,red;
-        z-index: 9;
-        gap: 15px;
-    }
-    .botones-enlaces { bottom: 70%; 
-            z-index: 7;
-            gap: 15px;
+    .texto-perfil {
+        font-size: 1.2rem;
+        font-weight: 600;
     }
 
-    .texto-perfil { font-size: 1rem;}
-    .perfil-contenedor .logo img {
-        width: 70px;
-        height: 70px;
-    }
     .comunicacion a img {
         width: 25px;
         height: 25px;
     }
-    .botones-enlaces a {font-size: 1rem;}
+
+    .botones-enlaces a {
+        width: 120px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+
+    .chat-ia {
+        width: 55%;
+        height: 90%;
+    }
 }
 
+/* 📱 ~600px */
+@media (max-width: 600px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-300px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 120px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 7rem; }
 
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
 
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~580px */
+@media (max-width: 580px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-300px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 120px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 7rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~520px */
+@media (max-width: 520px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-270px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 120px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 7rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~500px */
+@media (max-width: 500px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-250px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 120px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 7rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~480px */
+@media (max-width: 480px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-250px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 120px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 7rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~414px */
+@media (max-width: 414px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-210px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 100px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 5rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
+
+/* 📱 ~375px */
+@media (max-width: 375px){
+    .contenedor-principal {
+        bottom: 40%;
+        left: 55%;
+        gap: 7px;
+    }
+    .move-left .contenedor-principal {
+        transform: translateX(-200px);
+        opacity: 0.8;
+        transition: all 0.6s ease-in-out;
+    }
+    .perfil-contenedor {
+        gap: 10px;
+        max-width: 100px;
+        flex-direction: column;
+    }
+    .perfil-contenedor .logo { width: 5rem; }
+
+    .texto-perfil {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .comunicacion {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: left;
+        justify-content: center;
+    }
+
+    .comunicacion a img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .botones-enlaces {
+        display: flex;
+        flex-direction: column;   
+        gap: 25px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .botones-enlaces a {
+        width: 100px;
+        height: 30px;
+        font-size: 1rem;
+    }
+
+    .chat-ia {
+        width: 70%;
+        height: 90%;
+    }
+}
