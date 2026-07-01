@@ -174,9 +174,9 @@ h1, p {
     border: 2px solid #ACACAC;
     position: absolute;
     right: 0;
-    top: 5%;
+    top: 3%;
     width: 55%;
-    height: 60%; 
+    height: 50%; 
     background: rgba(0,0,0,0.85);
     border-radius: 12px 0 0 12px;
     display: flex;
