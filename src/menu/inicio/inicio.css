@@ -454,8 +454,9 @@ h1, p {
     }
 
     .chat-ia {
+        top: 5%;
         width: 70%;
-        height: 55%;
+        height: 60%;
     }
 }
 
@@ -510,10 +511,6 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
 /* 📱 ~520px */
@@ -567,10 +564,6 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
 /* 📱 ~500px */
@@ -624,10 +617,6 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
 /* 📱 ~480px */
@@ -681,10 +670,6 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
 /* 📱 ~414px */
@@ -738,10 +723,6 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
 /* 📱 ~375px */
@@ -795,9 +776,5 @@ h1, p {
         font-size: 1rem;
     }
 
-    .chat-ia {
-        width: 70%;
-        height: 55%;
-    }
 }
 
