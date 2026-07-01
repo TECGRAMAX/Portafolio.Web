@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 20vh;
-    background: #1A1921; /* 🔹 Fondo uniforme */
+    background: #1A1921;
     position: relative;
     overflow: hidden;
 }
@@ -23,28 +23,7 @@ h1, p {
   cursor: default;
 }
 
-.full {
-  position: absolute;
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 8;
-  max-width: 420px;
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  text-align: center;
-}
-
-.full p {
-  font-size: 2.3rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-/* 🔹 Caja padre que agrupa perfil, comunicación y enlaces */
+/* 🔹 Caja padre */
 .contenedor-principal {
     position: absolute;
     bottom: 55%;
@@ -57,35 +36,52 @@ h1, p {
     gap: 20px;
     transition: transform 0.3s ease-in-out;
 }
-/* 🔹 Animación al mover caja completa */
 .move-left .contenedor-principal {
     transform: translateX(-600px);
     opacity: 0.8;
     transition: all 0.6s ease-in-out;
 }
-/* Animación de entrada */
-@keyframes fadeInRight {
-    from { opacity: 0; transform: translateX(100px); }
-    to { opacity: 1; transform: translateX(0); }
-}
 
-/* Animación de salida */
-@keyframes fadeOutRight {
-    from { opacity: 1; transform: translateX(0); }
-    to { opacity: 0; transform: translateX(100px); }
-}
-
-/* Contenedor combinado de perfil + texto */
+/* Perfil + texto */
 .perfil-contenedor {
     display: flex;          
     align-items: center;    
     gap: 20px;              
     max-width: 450px;
+    position: relative;
 }
 
 .perfil-contenedor .logo {
     width: 20rem;
     border-radius: 50%;
+    position: relative;
+}
+
+/* 🔹 Globo de diálogo */
+.logo::after {
+    content: '...';
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    animation: fadeInUp 0.6s ease;
+    pointer-events: none;
+}
+
+/* 🔹 Ocultar temporalmente al pasar el puntero */
+.logo:hover::after {
+    display: none;
+}
+
+/* 🔹 Ocultar permanentemente */
+.logo.hide-bubble::after {
+    display: none;
 }
 
 .perfil-contenedor .logo img {
@@ -97,13 +93,12 @@ h1, p {
     background: rgba(158, 158, 158, 0.3);
     transition: transform 0.3s ease-in-out, border 0.3s ease-in-out;
 }
-
 .perfil-contenedor .logo:hover img {
     transform: scale(1.05);
     border: 3px solid #D82525;
 }
 
-/* 🔹 Animación de latido */
+/* Animación latido */
 @keyframes heartbeat {
   0% { transform: scale(1); }
   25% { transform: scale(1.08); }
@@ -111,9 +106,8 @@ h1, p {
   75% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-
 .latido img {
-  animation: heartbeat 1.2s infinite;
+  animation: heartbeat 1.2s ease-in-out infinite;
 }
 
 .texto-perfil {
@@ -127,7 +121,7 @@ h1, p {
     text-align: left;
 }
 
-/* Caja de comunicación (redes) */
+/* Comunicación */
 .comunicacion {
     display: flex;
     flex-direction: row;
@@ -140,20 +134,17 @@ h1, p {
     backdrop-filter: blur(6px);            
     box-shadow: 0 4px 12px rgba(0,0,0,0.6);
 }
-
 .comunicacion a img {
     filter: brightness(0) invert(1);
     width: 28px;
     height: 28px;
-    cursor: default;
 }
-
 .comunicacion a:hover img {
     transform: scale(1.2);
     filter: drop-shadow(0 0 6px #00e0ff); 
 }
 
-/* Botones de enlaces */
+/* Botones */
 .botones-enlaces {
     display: flex;
     flex-direction: row;   
@@ -161,7 +152,6 @@ h1, p {
     align-items: center;
     justify-content: center;
 }
-
 .botones-enlaces a {
     color: #fc466b;
     width: 120px;
@@ -173,15 +163,13 @@ h1, p {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: default;
 }
-
 .botones-enlaces a:hover {
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 6px 16px rgba(0,0,0,0.4);
 }
 
-/* 🔹 Contenedor principal del chat */
+/* Chat */
 .chat-ia {
     border: 2px solid #ACACAC;
     position: absolute;
@@ -198,8 +186,6 @@ h1, p {
     animation: fadeInRight 0.6s ease forwards;
     overflow: hidden;
 }
-
-/* 🔹 Área de mensajes */
 .chat-messages {
     flex: 1;
     overflow-y: auto;
@@ -207,9 +193,9 @@ h1, p {
     display: flex;
     flex-direction: column;
     gap: 12px;
+    scrollbar-width: thin;
+    scrollbar-color: #4CAF50 #1A1921;
 }
-
-/* 🔹 Mensajes estilo burbuja */
 .chat-message {
     max-width: 70%;
     padding: 12px 16px;
@@ -218,31 +204,25 @@ h1, p {
     line-height: 1.4;
     animation: fadeInUp 0.4s ease;
 }
-
-/* 🔹 Mensaje del bot */
 .chat-message.bot {
     background: #2a2a2a;
     color: #fff;
     align-self: flex-start;
     border-bottom-left-radius: 4px;
 }
-
-/* 🔹 Mensaje del usuario */
 .chat-message.user {
-    background: #4CAF50;
+    background: #2e7d32;
     color: #fff;
     align-self: flex-end;
     border-bottom-right-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
 }
-
-/* 🔹 Input fijo abajo */
 .chat-input {
     display: flex;
     padding: 12px;
     background: rgba(20,20,20,0.9);
     border-top: 1px solid #333;
 }
-
 .chat-input input {
     flex: 1;
     padding: 10px 14px;
@@ -253,7 +233,6 @@ h1, p {
     background: #fff;
     color: #000;
 }
-
 .chat-input button {
     margin-left: 10px;
     padding: 10px 18px;
@@ -265,33 +244,29 @@ h1, p {
     cursor: pointer;
     transition: background 0.3s ease;
 }
-
 .chat-input button:hover {
     background: #45a049;
 }
 
-/* 🔹 Animaciones */
+/* Animaciones */
 @keyframes fadeInRight {
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
-
 @keyframes fadeOutRight {
     from { transform: translateX(0); opacity: 1; }
     to { transform: translateX(100%); opacity: 0; }
 }
-
 @keyframes fadeInUp {
     from { transform: translateY(20px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* 🔹 Animación de puntos "escribiendo" */
+/* Puntos escribiendo */
 .typing {
   display: inline-flex;
   gap: 4px;
 }
-
 .typing span {
   width: 6px;
   height: 6px;
@@ -300,10 +275,13 @@ h1, p {
   display: inline-block;
   animation: bounce 1.2s infinite;
 }
-
 .typing span:nth-child(1) { animation-delay: 0s; }
 .typing span:nth-child(2) { animation-delay: 0.2s; }
-.typing span:nth-child(3)
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-6px); }
+}
 
 
 /* 💻 Tablets pequeñas (~900px) */
@@ -481,15 +459,15 @@ h1, p {
     }
 }
 
-/* 📱 ~580px */
+/* 📱 especialito detergente, moto e7 plus (~580px) */
 @media (max-width: 580px){
     .contenedor-principal {
         bottom: 40%;
-        left: 55%;
+        left: 50%;
         gap: 7px;
     }
     .move-left .contenedor-principal {
-        transform: translateX(-300px);
+        transform: translateX(-260px);
         opacity: 0.8;
         transition: all 0.6s ease-in-out;
     }
@@ -822,3 +800,4 @@ h1, p {
         height: 90%;
     }
 }
+

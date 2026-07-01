@@ -4,7 +4,7 @@ import github from '../assets/github.svg'
 import signal from '../assets/signal.svg'
 import buasap from '../assets/whatssap.svg'
 import linkedin from '../assets/linkedin.svg'
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const Inicio = () => {
     const [showChat, setShowChat] = useState(false);
@@ -13,9 +13,34 @@ const Inicio = () => {
     ]);
     const [input, setInput] = useState('');
     const [usedResponses, setUsedResponses] = useState(new Set());
+    const messagesEndRef = useRef(null);
+
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
+
+    const resetChat = () => {
+        setMessages([{ sender: 'bot', text: '💬 Bienvenido a mi Portafolio estimado. ¿En qué le puedo ayudar?' }]);
+        setInput('');
+        setUsedResponses(new Set());
+    };
 
     const handleLogoClick = () => {
-        setShowChat(prev => !prev);
+        setShowChat(prev => {
+            const newState = !prev;
+            if (!newState) {
+                resetChat();
+            }
+            return newState;
+        });
+
+        // 🔹 Ocultar permanentemente el globo
+        const logoElement = document.querySelector('.logo');
+        if (logoElement) {
+            logoElement.classList.add('hide-bubble');
+        }
     };
 
     const handleSend = () => {
@@ -24,25 +49,21 @@ const Inicio = () => {
         const newMessage = { sender: 'user', text: input };
         setMessages(prev => [...prev, newMessage]);
 
-        // 🔹 Normalizar texto: minúsculas y eliminar signos de puntuación
         const cleanedInput = input.toLowerCase().replace(/[.,;!?¿]/g, ' ');
         const words = cleanedInput.split(/\s+/).filter(Boolean);
 
-        // Palabras clave
         const clavesPortafolio = ['portafolio', 'esto', 'trata', 'que', 'es', 'donde', 'estoy'];
         const clavesContrato = ['contrato', 'contratar', 'contratando', 'trabajo', 'trabajar', 'desarrollo', 'programar', 'empleo', 'emplear', 'empresa'];
         const clavesLenguajes = ['lenguajes', 'javascript', 'js', 'react', 'node', 'net', 'frontend', 'backend', 'c+', 'phyton', 'librerías', 'inteligencia', 'artificial', 'ia', 'ai'];
         const saludos = ['hola', 'buenas', 'qué', 'tal', 'hi', 'hello', 'saludos'];
         const despedidas = ['adios', 'adiós', 'chau', 'hasta', 'luego', 'nos', 'vemos', 'bye'];
 
-        // Respuestas
         const respuestaPortafolio = '📌 Este es el Portafolio profesional base que sirve para el contrato -ya sea particular o Empresarial- de Maximiliano Leandro Simon Castaño. Los datos del desarrollador en cuestión puede verlos en la sección de Datos en PC, o tocar el primer icono de la barra de abajo en celular o Tableta.';
         const respuestaContrato = '💼 El objetivo de este Portafolio es justamente el empleo como desarrollador, además de poder incorporar a su proyecto u empresa, todo lo que la experiencia pueda aportarle.<br/>Para más información le recomiendo revisar la pestaña "Datos" en caso de estar en la PC, o ir al primer icono en la barra baja, si una Tableta o celular.';
         const respuestaLenguajes = '🖥️ Tal como dice en la pestaña "Datos" en caso de estar en la PC, o ir al primer icono en la barra baja, si una Tableta o celular, se tiene experiencia en lenguajes, librerías y estudio sobre la Inteligencia Artificial, más se combina con la experiencia en ser más rápido y el mercado que es cada vez más rápido.<br/>Al igual que este portafolio, se podrá realizar la WEB, aplicación (móvil o web), plataforma o trabajo en servidores, como también poner a su disposición los conocimientos en tecnología gracias a la Tecnicatura Electrónica que se posee; como también utilizar programación en bajo nivel (lenguaje de máquina), de ser requerido.';
 
         let responsesToSend = [];
 
-        // 🔹 Recorrer palabra por palabra en orden
         for (let w of words) {
             if (despedidas.includes(w)) {
                 responsesToSend.push('🙏 Gracias por usar el chatbot, Dios lo bendiga y guarde.');
@@ -53,35 +74,46 @@ const Inicio = () => {
                 }, 2000);
                 break;
             }
-            if (saludos.includes(w) && !responsesToSend.includes('💬 Bienvenido a mi Portafolio estimado. ¿En qué le puedo ayudar?')) {
-                responsesToSend.push('💬 Bienvenido a mi Portafolio estimado. ¿En qué le puedo ayudar?');
+            if (saludos.includes(w)) {
+                if (!usedResponses.has('saludo')) {
+                    responsesToSend.push('💬 Bienvenido a mi Portafolio estimado. ¿En qué le puedo ayudar?');
+                    setUsedResponses(prev => new Set([...prev, 'saludo']));
+                } else {
+                    responsesToSend.push('☀️ Buen día nuevamente estimado.');
+                }
             }
-            if (clavesPortafolio.includes(w) && !usedResponses.has('portafolio')) {
+            if (clavesPortafolio.includes(w)) {
+                if (usedResponses.has('portafolio')) {
+                    responsesToSend.push('Está bien, repito');
+                }
                 responsesToSend.push(respuestaPortafolio);
-                usedResponses.add('portafolio');
+                setUsedResponses(prev => new Set([...prev, 'portafolio']));
             }
-            if (clavesContrato.includes(w) && !usedResponses.has('contrato')) {
+            if (clavesContrato.includes(w)) {
+                if (usedResponses.has('contrato')) {
+                    responsesToSend.push('Está bien, repito');
+                }
                 responsesToSend.push(respuestaContrato);
-                usedResponses.add('contrato');
+                setUsedResponses(prev => new Set([...prev, 'contrato']));
             }
-            if (clavesLenguajes.includes(w) && !usedResponses.has('lenguajes')) {
+            if (clavesLenguajes.includes(w)) {
+                if (usedResponses.has('lenguajes')) {
+                    responsesToSend.push('Está bien, repito');
+                }
                 responsesToSend.push(respuestaLenguajes);
-                usedResponses.add('lenguajes');
+                setUsedResponses(prev => new Set([...prev, 'lenguajes']));
             }
         }
 
-        // Si no hubo coincidencias
         if (responsesToSend.length === 0) {
             responsesToSend.push('Soy un chat básico, por favor manténgase en lo laboral.');
         }
 
-        // 🔹 Verificar si ya se usaron todas las respuestas automáticas (excepto despedida)
         const allResponsesUsed = ['portafolio', 'contrato', 'lenguajes'].every(r => usedResponses.has(r));
         if (allResponsesUsed) {
-            responsesToSend = ['Es todo ¿Le gustaría saber algo más?'];
+            responsesToSend.push('✅ Es todo lo que puedo ofrecer. ¿Desea más detalles específicos?');
         }
 
-        // Enviar todas las respuestas detectadas en orden
         setTimeout(() => {
             responsesToSend.forEach(resp => {
                 setMessages(prev => [...prev, { sender: 'bot', text: resp }]);
@@ -100,6 +132,7 @@ const Inicio = () => {
     return (
         <section className={`Inicio ${showChat ? 'move-left' : ''}`}>
             <div className="contenedor-principal">
+                {/* Logo con globo */}
                 <div className="perfil-contenedor" onClick={handleLogoClick}>
                     <div className={`logo ${!showChat ? 'latido' : ''}`}>
                         <img src={perfil} alt="Perfil" />
@@ -109,6 +142,7 @@ const Inicio = () => {
                     </article>
                 </div>
 
+                {/* Iconos de comunicación */}
                 <div className="comunicacion">
                     <a target="_blank" href="https://github.com/TECGRAMAX?tab=repositories">
                         <img width='25px' src={github} alt="GitHub" />
@@ -124,12 +158,14 @@ const Inicio = () => {
                     </a>
                 </div>
 
+                {/* Botones extra */}
                 <div className="botones-enlaces">
                     <a target="_blank" href="mailto:donmaximilianoiiidelaplata@gmail.com">GMAIL</a>
                     <a href="https://hunter.io/search" target="_blank">Hunter.io</a>
                 </div>
             </div>
 
+            {/* Chat */}
             {showChat && (
                 <div className="chat-ia">
                     <div className="chat-messages">
@@ -140,6 +176,7 @@ const Inicio = () => {
                                 dangerouslySetInnerHTML={{ __html: msg.text }}
                             />
                         ))}
+                        <div ref={messagesEndRef} />
                     </div>
                     <div className="chat-input">
                         <input
@@ -147,7 +184,7 @@ const Inicio = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Escribe tu mensaje..."
+                             placeholder="Escribe tu mensaje..."
                         />
                         <button onClick={handleSend}>Enviar</button>
                     </div>
@@ -158,3 +195,5 @@ const Inicio = () => {
 }
 
 export default Inicio;
+
+
